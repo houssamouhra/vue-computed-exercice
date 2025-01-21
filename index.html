@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Computed Exercice</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="contain">
+        <h2>Blog Posts</h2>
+
+        <div class="new">
+          <h3>Add a New Post</h3>
+          <form @submit.prevent="addPost">
+            <input v-model="newTitle" placeholder="title" required />
+            <input v-model="newAuthor" placeholder="author name" required />
+            <select v-model="newLabel" required>
+              <option disabled value="">Add a New label</option>
+              <option v-for="category in categories" :value="category">
+                {{category}}
+              </option>
+            </select>
+            <button type="submit" @click="addPost">Add New Blog Post</button>
+          </form>
+        </div>
+
+        <select v-model="selected" id="select-two">
+          <option disabled value="">Filter with a label</option>
+          <option>science</option>
+          <option>math</option>
+          <option>poetry</option>
+          <option>history</option>
+        </select>
+
+        <div v-for="post in filteredByLabel" :key="post.title" class="post">
+          <span class="label">{{ post.label }}</span>
+          <p>{{ post.title }}</p>
+          <small>{{ post.author }}</small>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
